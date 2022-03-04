@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Flikr</string>
+    <string name="photos">Photos</string>
+    <string name="favorites">Favorites</string>
+</resources>

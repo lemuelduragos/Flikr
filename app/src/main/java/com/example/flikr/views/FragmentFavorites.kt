@@ -1,6 +1,5 @@
 package com.example.flikr.views
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,22 +49,6 @@ class FragmentFavorites : Fragment(), ImageRecyclerViewAdapter.AdapterCallback {
 
     //on click listener from ImageRecyclerViewAdapter
     override fun click(id: String, isFavorite: Boolean) {
-        val preferences = context?.getSharedPreferences("sharedPreference", Context.MODE_PRIVATE)
-
-        //Retrieve the values
-        val set = preferences?.getStringSet("favorites", HashSet()) ?: HashSet()
-
-        val newStrSet: MutableSet<String> = HashSet()
-        newStrSet.addAll(set)
-        if (isFavorite) {
-            newStrSet.add(id)
-        } else {
-            if (newStrSet.contains(id)) newStrSet.remove(id)
-        }
-
-        //save ids of favorites to preferences manager
-        val editor = preferences?.edit()
-        editor?.putStringSet("favorites", newStrSet)
-        editor?.apply()
+        viewModel.setFavorite(id, isFavorite)
     }
 }
